@@ -13,7 +13,7 @@
 
   var mod = angular.module('ionicRipple', []);
 
-  mod.directive('ripple', function() {
+  mod.directive('ripple', ["$timeout", function($timeout) {
     return {
       restrict: 'A',
     //   scope:{
@@ -59,9 +59,13 @@
 
             rip.css({top: y+'px', left: x+'px'}).addClass("animate-ripple");
 
+            $timeout(function(){
+                rip.removeClass("animate-ripple");
+            }, 700);
+
         });
       }
     };
-  });
+  }]);
 
 })(window, window.angular);
